@@ -8,7 +8,12 @@ jobs:
     steps:
       - name: Check out repository
         uses: actions/checkout@v3
-      
+        with:
+          lfs: true
+
+      - name: Checkout LFS objects
+        run: git lfs checkout
+
       - name: Set up python
         uses: actions/setup-python@v4
         with:
@@ -18,7 +23,7 @@ jobs:
         run: |
           cd ml_project
           pip install -r requirements.txt
-  
+
       - name: Run tests
         run: |
           cd ml_project

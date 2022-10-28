@@ -1,3 +1,6 @@
 .ipynb_checkpoints/
-
 *.csv
+*.joblib
+venv/
+__pycache__
+outputs/

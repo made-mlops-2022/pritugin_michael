@@ -2,7 +2,7 @@ import pandas as pd
 from sklearn import preprocessing
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     df = pd.read_csv("../../data/raw/heart_cleveland_upload.csv")
 
     df_cat = df[["cp", "restecg", "slope", "thal"]]

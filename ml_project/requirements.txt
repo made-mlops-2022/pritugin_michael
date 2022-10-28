@@ -25,3 +25,4 @@ sweetviz==2.1.4
 threadpoolctl==3.1.0
 tqdm==4.64.1
 black[jupyter]
+flake8

@@ -11,7 +11,7 @@ class OneHotTransformer(TransformerMixin, BaseEstimator):
         self.encoder = preprocessing.OneHotEncoder()
         self.categorial_features = categorial_features
 
-    def fit(self, X: pd.DataFrame):
+    def fit(self, X: pd.DataFrame, y=None):
         categorial_data = X[self.categorial_features]
 
         self.encoder.fit(categorial_data)
@@ -29,5 +29,20 @@ class OneHotTransformer(TransformerMixin, BaseEstimator):
         new_categorial_data = pd.DataFrame(data=categorial_array, columns=column_names)
 
         transformed_df = pd.concat([new_categorial_data, other_data], axis=1)
+
+        return transformed_df
+
+
+class DropTransformer(TransformerMixin, BaseEstimator):
+    def __init__(self, drop_features: list[str]):
+        super().__init__()
+
+        self.drop_features = drop_features
+
+    def fit(self, X: pd.DataFrame, y=None):
+        return self
+
+    def transform(self, X: pd.DataFrame) -> pd.DataFrame:
+        transformed_df = X.drop(self.drop_features, axis=1)
 
         return transformed_df

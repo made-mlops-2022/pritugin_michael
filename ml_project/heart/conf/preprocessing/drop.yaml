@@ -1,4 +1,4 @@
 defaults:
-  - base_onehot
+  - base_drop
 
 features: ["cp", "restecg", "slope", "thal"]

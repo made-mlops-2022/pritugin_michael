@@ -27,3 +27,6 @@ tqdm==4.64.1
 seaborn==0.12.1
 black[jupyter]
 flake8
+click
+loguru==0.6.0
+faker==15.1.1

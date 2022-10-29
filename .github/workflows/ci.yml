@@ -27,7 +27,8 @@ jobs:
       - name: Run tests
         run: |
           cd ml_project
-          python -m unittest tests/test_*.py 
+          export HEART_PROJECT=$(pwd)
+          python -m unittest tests/test_*.py
 
       - name: Check by flake8
         run: |

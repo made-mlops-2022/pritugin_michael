@@ -40,7 +40,7 @@ class TestTrain(unittest.TestCase):
             OneHotEncoding(features=self.features),
             self.TRAIN_PATH,
             self.MODELS_PATH,
-            use_mlflow=False
+            use_mlflow=False,
         )
 
         train(config)
@@ -76,7 +76,7 @@ class TestTrain(unittest.TestCase):
             DropFeatures(features=self.features),
             self.TRAIN_PATH,
             self.MODELS_PATH,
-            use_mlflow=False
+            use_mlflow=False,
         )
 
         train(config)
@@ -112,7 +112,7 @@ class TestTrain(unittest.TestCase):
             OneHotEncoding(features=self.features),
             self.TRAIN_PATH,
             self.MODELS_PATH,
-            use_mlflow=False
+            use_mlflow=False,
         )
 
         train(config)
@@ -148,7 +148,7 @@ class TestTrain(unittest.TestCase):
             DropFeatures(features=self.features),
             self.TRAIN_PATH,
             self.MODELS_PATH,
-            use_mlflow=False
+            use_mlflow=False,
         )
 
         train(config)

@@ -19,7 +19,7 @@ from dotenv import load_dotenv, find_dotenv
 def main(cfg: Config) -> None:
     if cfg.use_mlflow:
         load_dotenv(find_dotenv())
-        mlflow.set_tracking_uri(os.environ['MLFLOW_TRACKING_URI'])
+        mlflow.set_tracking_uri(os.environ["MLFLOW_TRACKING_URI"])
     else:
         mlflow.set_tracking_uri(f"file://{LOCAL_MLFLOW_PATH}")
 
@@ -51,12 +51,12 @@ def main(cfg: Config) -> None:
         X = df.drop("condition", axis=1)
         y = df["condition"]
         X_train = transformer(features).fit_transform(X)
-        
-        metrics = ['precision_macro', 'f1_macro', 'recall_macro']
+
+        metrics = ["precision_macro", "f1_macro", "recall_macro"]
         scores = cross_validate(clf, X_train, y, cv=5, scoring=metrics)
 
         for metric in metrics:
-            mlflow.log_metric(metric, np.mean(scores[f'test_{metric}']))
+            mlflow.log_metric(metric, np.mean(scores[f"test_{metric}"]))
 
         pipe = Pipeline([("transformer", transformer(features)), ("model", clf)])
         logger.info("Starting model training")
@@ -73,4 +73,4 @@ def main(cfg: Config) -> None:
         logger.info(f"The model was saved in {save_path}")
 
         if cfg.use_mlflow:
-            mlflow.sklearn.log_model(pipe, 'model', registered_model_name=f"{mt}_{pt}")
+            mlflow.sklearn.log_model(pipe, "model", registered_model_name=f"{mt}_{pt}")

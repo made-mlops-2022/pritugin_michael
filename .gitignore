@@ -9,3 +9,4 @@ outputs/
 keys.txt
 .env
 mlruns/
+build/

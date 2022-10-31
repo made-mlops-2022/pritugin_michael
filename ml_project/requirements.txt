@@ -15,8 +15,8 @@ attrs==22.1.0
 backcall==0.2.0
 billiard==3.6.4.0
 black==22.10.0
-boto3==1.25.4
-botocore==1.28.4
+boto3==1.24.59
+botocore==1.27.59
 celery==5.2.7
 certifi==2022.9.24
 cffi==1.15.1

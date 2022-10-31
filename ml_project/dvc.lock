@@ -27,5 +27,5 @@ stages:
       size: 3004
     outs:
     - path: models/last_model.joblib
-      md5: 50de497d7e23a8ba8b1b8411f6f5c3eb
+      md5: 6efb99cb06db077992e4c338f59bae69
       size: 4481

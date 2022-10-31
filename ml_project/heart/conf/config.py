@@ -45,6 +45,8 @@ class Config:
     preprocessing: PreprocessingType
     dataset_path: Path = RAW_PATH
     models_path: Path = MODELS_PATH
+    test_size: float = 0.2
+    use_mlflow: bool = True
 
 
 cs = ConfigStore.instance()

@@ -6,3 +6,6 @@ __pycache__
 outputs/
 *.egg-info
 .coverage
+keys.txt
+.env
+mlruns/

@@ -21,6 +21,7 @@ class OneHotTransformer(TransformerMixin, BaseEstimator):
     def transform(self, X: pd.DataFrame) -> pd.DataFrame:
         categorial_data = X[self.categorial_features]
         other_data = X.drop(self.categorial_features, axis=1)
+        other_data.reset_index(drop=True, inplace=True)
 
         categorial_array = self.encoder.transform(categorial_data).toarray()
         categorial_array = categorial_array.astype(np.int32, copy=False)

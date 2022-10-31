@@ -1,0 +1,31 @@
+schema: '2.0'
+stages:
+  download_dataset:
+    cmd: download_dataset
+    deps:
+    - path: heart/data/download_dataset.py
+      md5: d3d43e34597466990abfb5651f4b031c
+      size: 345
+    outs:
+    - path: data/raw/heart_cleveland_upload.csv
+      md5: 9f536dad38229ca519687b116f1d632a
+      size: 11106
+  train_model:
+    cmd: train
+    deps:
+    - path: data/raw/heart_cleveland_upload.csv
+      md5: 9f536dad38229ca519687b116f1d632a
+      size: 11106
+    - path: heart/conf/config.py
+      md5: 92e59d9d082dbe3bc4a89343d4272f56
+      size: 1260
+    - path: heart/conf/config.yaml
+      md5: 663ba3ccd61148ba38ce8985adb45d2d
+      size: 69
+    - path: heart/models/train.py
+      md5: b841667d7e5cbfbaa6d9024bf0547986
+      size: 3004
+    outs:
+    - path: models/last_model.joblib
+      md5: 5741828bca461c535228c58542e8a561
+      size: 4561

@@ -15,6 +15,7 @@ setup(
         "console_scripts": [
             "train = heart.models.train:main",
             "predict = heart.models.predict:main",
+            "download_dataset = heart.data.download_dataset:main",
         ]
     },
     install_requires=required,

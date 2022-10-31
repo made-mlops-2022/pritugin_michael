@@ -13,6 +13,7 @@ import joblib
 from loguru import logger
 import mlflow
 from dotenv import load_dotenv, find_dotenv
+import shutil
 
 
 @hydra.main(version_base=None, config_path="../conf", config_name="config")
@@ -70,6 +71,7 @@ def main(cfg: Config) -> None:
             pipe,
             save_path,
         )
+        shutil.copy(save_path, cfg.models_path / "last_model.joblib")
         logger.info(f"The model was saved in {save_path}")
 
         if cfg.use_mlflow:

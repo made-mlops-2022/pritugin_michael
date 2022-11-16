@@ -1,0 +1,5 @@
+[core]
+    remote = S3
+['remote "s3"']
+    url = s3://mlflow_homework1/dvc
+    endpointurl = https://hb.bizmrg.com

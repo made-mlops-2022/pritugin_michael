@@ -1,0 +1,4 @@
+defaults:
+  - base_rf
+
+max_depth: 5

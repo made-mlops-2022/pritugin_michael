@@ -1,0 +1,4 @@
+defaults:
+  - base_onehot
+
+features: ["cp", "restecg", "slope", "thal"]

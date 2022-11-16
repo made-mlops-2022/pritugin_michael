@@ -1,0 +1,41 @@
+name: check
+
+on: push
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v3
+        with:
+          lfs: true
+
+      - name: Checkout LFS objects
+        run: git lfs checkout
+
+      - name: Set up python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+
+      - name: Install dependencies
+        run: |
+          cd ml_project
+          pip install .
+
+      - name: Run tests
+        run: |
+          cd ml_project
+          export HEART_PROJECT=$(pwd)
+          python -m unittest tests/test_*.py
+
+      - name: Check by flake8
+        run: |
+          cd ml_project
+          flake8 . --count --show-source --statistics
+
+      - name: Check by black
+        run: |
+          cd ml_project
+          black --check .

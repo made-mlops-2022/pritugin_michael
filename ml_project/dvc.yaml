@@ -1,0 +1,17 @@
+stages:
+  download_dataset:
+    cmd: download_dataset
+    deps:
+      - heart/data/download_dataset.py
+    outs:
+      - data/raw/heart_cleveland_upload.csv
+
+  train_model:
+    cmd: train
+    deps:
+      - heart/models/train.py
+      - heart/conf/config.yaml
+      - heart/conf/config.py
+      - data/raw/heart_cleveland_upload.csv
+    outs:
+      - models/last_model.joblib

@@ -6,7 +6,7 @@ env:
   MODEL_PATH: model.joblib
 
 jobs:
-  check:
+  check_hw1:
     runs-on: ubuntu-latest
     steps:
       - name: Check out repository
@@ -43,17 +43,29 @@ jobs:
           cd ml_project
           black --check .
 
-      - name: Run tests hw2
-        run: |
-          cd online_inference
-          python -m unittest test_*.py
+  check_hw2:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v3
 
-      - name: Check by flake8 hw2
-        run: |
-          cd online_inference
-          flake8 . --count --show-source --statistics
+      - name: Set up python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
 
-      - name: Check by black hw2
-        run: |
-          cd online_inference
-          black --check .
+      - name: Install dependencies
+        working-directory: online_inference/
+        run: pip install -r requirements-dev.txt
+
+      - name: Run tests
+        working-directory: online_inference/
+        run: python -m unittest test_*.py
+
+      - name: Check by flake8
+        working-directory: online_inference/
+        run: flake8 . --count --show-source --statistics
+
+      - name: Check by black
+        working-directory: online_inference/
+        run: black --check .

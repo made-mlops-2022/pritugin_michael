@@ -2,6 +2,9 @@ name: check
 
 on: push
 
+env:
+  MODEL_PATH: model.joblib
+
 jobs:
   check:
     runs-on: ubuntu-latest
@@ -38,4 +41,19 @@ jobs:
       - name: Check by black
         run: |
           cd ml_project
+          black --check .
+
+      - name: Run tests hw2
+        run: |
+          cd online_inference
+          python -m unittest test_*.py
+
+      - name: Check by flake8 hw2
+        run: |
+          cd online_inference
+          flake8 . --count --show-source --statistics
+
+      - name: Check by black hw2
+        run: |
+          cd online_inference
           black --check .

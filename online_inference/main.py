@@ -45,7 +45,7 @@ def start_service():
 
 
 @app.exception_handler(RequestValidationError)
-async def validation_exception_handler(request, exc):
+def validation_exception_handler(request, exc):
     return JSONResponse({"error": str(exc)}, status_code=400)
 
 

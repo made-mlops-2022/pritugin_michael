@@ -8,8 +8,10 @@ for data in generate_data(10):
 
     print(response.json())
 
-    print(response.text, response.status_code)
+    print(response.status_code)
 
     response = requests.get("http://localhost:9000/health")
 
-    print(response.text, response.status_code)
+    print(response.json())
+
+    print(response.status_code)

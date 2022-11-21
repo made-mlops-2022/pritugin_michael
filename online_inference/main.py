@@ -1,4 +1,6 @@
 from fastapi import FastAPI, status, HTTPException
+from fastapi.exceptions import RequestValidationError
+from fastapi.responses import JSONResponse
 from pathlib import Path
 from utils.model_utils import model_exists, download_model, StartupException
 from utils.data import HeartRequest
@@ -40,6 +42,11 @@ def start_service():
     logger.info("Model is loaded")
 
     logger.info("Preparations for the launch are over")
+
+
+@app.exception_handler(RequestValidationError)
+async def validation_exception_handler(request, exc):
+    return JSONResponse({"error": str(exc)}, status_code=400)
 
 
 @app.post("/predict")

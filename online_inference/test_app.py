@@ -20,3 +20,29 @@ class TestApp(unittest.TestCase):
 
             self.assertEqual(response.status_code, 200)
             self.assertEqual(response.json()["status"], "ok")
+
+    def test_validation(self):
+        with TestClient(app) as client:
+            data = generate_data(1)[0]
+            data["sex"] = 5
+
+            response = client.post("/predict", content=json.dumps(data))
+
+            self.assertEqual(response.status_code, 400)
+            self.assertTrue("error" in response.json())
+
+            data = generate_data(1)[0]
+            data["age"] = -10
+
+            response = client.post("/predict", content=json.dumps(data))
+
+            self.assertEqual(response.status_code, 400)
+            self.assertTrue("error" in response.json())
+
+            data = generate_data(1)[0]
+            data["oldpeak"] = -17.7
+
+            response = client.post("/predict", content=json.dumps(data))
+
+            self.assertEqual(response.status_code, 400)
+            self.assertTrue("error" in response.json())

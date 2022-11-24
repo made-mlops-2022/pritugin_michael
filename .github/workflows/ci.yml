@@ -2,8 +2,11 @@ name: check
 
 on: push
 
+env:
+  MODEL_PATH: model.joblib
+
 jobs:
-  check:
+  check_hw1:
     runs-on: ubuntu-latest
     steps:
       - name: Check out repository
@@ -39,3 +42,30 @@ jobs:
         run: |
           cd ml_project
           black --check .
+
+  check_hw2:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v3
+
+      - name: Set up python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+
+      - name: Install dependencies
+        working-directory: online_inference/
+        run: pip install -r requirements-dev.txt
+
+      - name: Run tests
+        working-directory: online_inference/
+        run: python -m unittest test_*.py
+
+      - name: Check by flake8
+        working-directory: online_inference/
+        run: flake8 . --count --show-source --statistics
+
+      - name: Check by black
+        working-directory: online_inference/
+        run: black --check .

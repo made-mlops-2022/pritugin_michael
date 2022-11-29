@@ -10,3 +10,5 @@ keys.txt
 .env
 mlruns/
 build/
+.DS_Store
+
